@@ -3,13 +3,13 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-var gpio = require('pi-gpio');
+var Gpio = require('onoff').Gpio,
+  led = new Gpio(17, 'out'),
+  ledm = new Gpio(27, 'out');
 
-gpio.open(16, "output", function(err) {		// Open pin 16 for output
-	gpio.write(16, 1, function() {			// Set pin 16 high (1)
-		gpio.close(16);						// Close pin 16
-	});
-});
+led.writeSync(0);
+ledm.writeSync(1);
+
 
 server.listen(3000, function(){
     console.log('Servidor corriendo en http://localhost:3000');

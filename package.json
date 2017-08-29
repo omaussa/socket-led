@@ -9,14 +9,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wolfcor/socket-led.git"
+  },
   "dependencies": {
     "express": "^4.15.4",
     "onoff": "^1.1.7",
-    "pi-gpio": "0.0.8",
-    "rpi-gpio": "^0.8.1",
     "socket.io": "^2.0.3"
-  },
-  "devDependencies": {
-    "@types/node": "^8.0.25"
   }
 }
