@@ -7,9 +7,10 @@ var Gpio = require('onoff').Gpio,
   led = new Gpio(17, 'out'),
   ledm = new Gpio(27, 'out');
 
+var port = process.env.PORT || 3000;
 
-server.listen(3000, function(){
-    console.log('Servidor corriendo en http://localhost:3000');
+server.listen(port, function(){
+    console.log('Servidor corriendo en http://localhost:'+port);
 });
 
 
