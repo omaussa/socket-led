@@ -7,9 +7,6 @@ var Gpio = require('onoff').Gpio,
   led = new Gpio(17, 'out'),
   ledm = new Gpio(27, 'out');
 
-led.writeSync(0);
-ledm.writeSync(1);
-
 
 server.listen(3000, function(){
     console.log('Servidor corriendo en http://localhost:3000');
@@ -22,11 +19,16 @@ io.on('connection', function(socket) {
 
     socket.on('turnon', function(data){
         console.log(data);
-        socket.emit('message', 'Recibido');
+        socket.emit('message', 'Encendido');
+        led.writeSync(0);
+        ledm.writeSync(1);
     });
     
     socket.on('turnoff', function(data){
         console.log(data);
+        socket.emit('message', 'Apagado');
+        led.writeSync(1);
+        ledm.writeSync(0);
     });
 
 });
