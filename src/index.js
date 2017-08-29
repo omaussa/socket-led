@@ -3,15 +3,13 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-var gpio = require('rpi-gpio');
+var gpio = require('pi-gpio');
 
-function write() {
-    gpio.write(7, false, function(err) {
-        if (err) throw err;
-        console.log('Written to pin');
-    });
-}
-gpio.setup(7, gpio.DIR_HIGH, write);
+gpio.open(16, "output", function(err) {		// Open pin 16 for output
+	gpio.write(16, 1, function() {			// Set pin 16 high (1)
+		gpio.close(16);						// Close pin 16
+	});
+});
 
 server.listen(3000, function(){
     console.log('Servidor corriendo en http://localhost:3000');
